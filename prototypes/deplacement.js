@@ -9,7 +9,6 @@ $(function () {
     var _nbrow = 3;
 
     var _contenuDiv = _perso.html();
-    alert (_contenuDiv);
 
     $(document).keydown(function(e) {
         _row = parseInt(_perso.attr('row'));
