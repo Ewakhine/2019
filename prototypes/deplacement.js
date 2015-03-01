@@ -26,6 +26,8 @@ $(function () {
     var _mouvingButtonActiv;
 
 
+
+
     //Consideration of mouving's button with a mouse
     $(_mouvingButtonClass).click(function () {
         _mouvingButtonClass.each( function() {
@@ -50,7 +52,7 @@ $(function () {
         }
     });
 
-    //Keyboard's mouving
+    //Keyboard's mouving and consideration of type of mouving
     $(document).keydown(function(e) {
         init();
 
@@ -72,8 +74,30 @@ $(function () {
                 break;
 
             case 16:
-                if (!_run){_run = true; _walk = false; _crounching = false;}
-                else {_run = false; _walk = true; _crounching = false;}
+                if (!_run){_run = true; _walk = false; _crounching = false;
+                    _persoMouving.text("run");
+                    $('.mouvingButton[name="run"]').attr('activ', "true");
+                    $('.mouvingButton[name="walk"]').attr('activ', "false");
+                    $('.mouvingButton[name="crounching"]').attr('activ', "false");}
+                else {_run = false; _walk = true; _crounching = false;
+                    _persoMouving.text("walk");
+                    $('.mouvingButton[name="run"]').attr('activ', "false");
+                    $('.mouvingButton[name="walk"]').attr('activ', "true");
+                    $('.mouvingButton[name="crounching"]').attr('activ', "false");}
+                break;
+
+            case 17:
+                if (!_crounching){_run = false; _walk = false; _crounching = true;
+                    _persoMouving.text("crounching");
+                    $('.mouvingButton[name="crounching"]').attr('activ', "true");
+                    $('.mouvingButton[name="walk"]').attr('activ', "false");
+                    $('.mouvingButton[name="run"]').attr('activ', "false");}
+                else {_run = false; _walk = true; _crounching = false;
+                    _persoMouving.text("walk");
+                    $('.mouvingButton[name="crounching"]').attr('activ', "false");
+                    $('.mouvingButton[name="walk"]').attr('activ', "true");
+                    $('.mouvingButton[name="run"]').attr('activ', "false");}
+                break;
         }
         refresh();
     });

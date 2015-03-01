@@ -7,7 +7,7 @@ include('prototypes.php');
 
 <p>
     Points d'énergie consommés : <span id="movePoint"></span><br />
-    Position du personnage : <span id="persoMouving"></span>
+    Déplacement du personnage : <span id="persoMouving"></span>
 </p>
 
 <aside id="asideGauge">
@@ -21,6 +21,16 @@ include('prototypes.php');
     <button class="mouvingButton" name="walk" activ="true">Marche</button><br />
     <button class="mouvingButton" name="run" activ="false">Course</button><br />
     <button class="mouvingButton" name="crounching" activ="false">Accroupissement</button>
+</aside>
+
+<aside id="instructions">
+    <h1>Instructions</h1>
+    <p>
+        Déplacement clavier : ZQSD<br />
+        Déplacement souris : case adjacente<br />
+        Dés/activer course clavier : maj<br />
+        Désactiver accroupissement clavier : ctrl
+    </p>
 </aside>
 
 <div id="minimap">

@@ -151,3 +151,12 @@
 }
 
 /* This button was generated using CSSButtonGenerator.com */
+
+/******************************************
+*************** Instruction ***************
+*******************************************/
+#instructions {
+	position: absolute;
+	right: 0%;
+	top: 0%;
+}
