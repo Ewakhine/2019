@@ -38,11 +38,10 @@
 }
 
 /******************************************
-****************** Gauge* *****************
+****************** Gauge ******************
 *******************************************/
 #asideGauge{
-	position: absolute;
-	top: 50px;
+	position: relative;
 }
 
 #gauge {
@@ -68,3 +67,87 @@
 	margin-left: 5px;
 	width: 75px;
 }
+
+/******************************************
+****************** Button *****************
+*******************************************/
+#asideMouvingButtons {
+	position: relative;
+	top: 10px;
+}
+
+.mouvingButton[activ="true"] {
+	-moz-box-shadow:inset 0 1px 0 0 #d9fbbe;
+	-webkit-box-shadow:inset 0 1px 0 0 #d9fbbe;
+	box-shadow:inset 0 1px 0 0 #d9fbbe;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #b8e356), color-stop(1, #aad946) );
+	background:linear-gradient( 70deg, #b8e356 5%, #aad946 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#b8e356', endColorstr='#aad946');
+	background-color:greenyellow;
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+	text-indent:0;
+	border:1px solid #83c41a;
+	display:inline-block;
+	color:#ffffff;
+	font-family:Comic Sans MS;
+	font-size:15px;
+	font-weight:bold;
+	font-style:normal;
+	height:30px;
+	line-height:35px;
+	width:140px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 1px 0 #86ae47;
+}
+.mouvingButton[activ="true"]:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #aad946), color-stop(1, #b8e356) );
+	background:-moz-linear-gradient( 70deg, #aad946 5%, #b8e356 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#aad946', endColorstr='#b8e356');
+	background-color:#aad946;
+}
+.mouvingButton[activ="true"]:active {
+	 position: relative;
+	 top: 1px;
+}
+
+.mouvingButton[activ="false"] {
+	-moz-box-shadow:inset 0 1px 0 0 #ed968e;
+	-webkit-box-shadow:inset 0 1px 0 0 #ed968e;
+	box-shadow:inset 0 1px 0 0 #ed968e;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #d44439), color-stop(1, #a31b0f) );
+	background:-moz-linear-gradient( 70deg, #d44439 5%, #a31b0f 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#d44439', endColorstr='#a31b0f');
+	background-color:#d44439;
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+	text-indent:0;
+	border:1px solid #d41a0c;
+	display:inline-block;
+	color:#ffffff;
+	font-family:Comic Sans MS;
+	font-size:15px;
+	font-weight:bold;
+	font-style:normal;
+	height:35px;
+	line-height:35px;
+	width:140px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 1px 0 #810e05;
+}
+.mouvingButton[activ="false"]:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #a31b0f), color-stop(1, #d44439) );
+	background:-moz-linear-gradient( 70deg, #a31b0f 5%, #d44439 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#a31b0f', endColorstr='#d44439');
+	background-color:#a31b0f;
+}
+.mouvingButton[activ="false"]:active {
+	 position:relative;
+	 top:1px;
+}
+
+/* This button was generated using CSSButtonGenerator.com */
