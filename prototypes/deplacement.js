@@ -27,7 +27,6 @@ $(function () {
 
 
 
-
     //Consideration of mouving's button with a mouse
     $(_mouvingButtonClass).click(function () {
         _mouvingButtonClass.each( function() {
@@ -36,17 +35,17 @@ $(function () {
 
         switch($(this).attr('name')) {
             case "walk":
-                _walk = true; _run = false; _crounching = false;
+                button(true, false, false);
                 _persoMouving.text($(this).attr('name'));
                 break;
 
             case "run":
-                _walk = false; _run = true; _crounching = false;
+                button(false, false, true);
                 _persoMouving.text($(this).attr('name'));
                 break;
 
             case "crounching":
-                _walk = false; _run = false; _crounching = true;
+                button(false, true, false);
                 _persoMouving.text($(this).attr('name'));
                 break;
         }
@@ -58,45 +57,31 @@ $(function () {
 
         switch(e.which){
             case 90: // Z
-                    move(_haut, 1, 0, _run);
+                move(_haut, 1, 0, _run);
                 break;
 
             case 81: // Q
-                    move(_gauche, 0, 1, _run);
+                move(_gauche, 0, 1, _run);
                 break;
 
             case 83: // S
-                    move(_bas, -1, 0, _run);
+                move(_bas, -1, 0, _run);
                 break;
 
             case 68: // D
                 move(_droit, 0, -1, _run);
                 break;
 
-            case 16:
-                if (!_run){_run = true; _walk = false; _crounching = false;
-                    _persoMouving.text("run");
-                    $('.mouvingButton[name="run"]').attr('activ', "true");
-                    $('.mouvingButton[name="walk"]').attr('activ', "false");
-                    $('.mouvingButton[name="crounching"]').attr('activ', "false");}
-                else {_run = false; _walk = true; _crounching = false;
-                    _persoMouving.text("walk");
-                    $('.mouvingButton[name="run"]').attr('activ', "false");
-                    $('.mouvingButton[name="walk"]').attr('activ', "true");
-                    $('.mouvingButton[name="crounching"]').attr('activ', "false");}
+            case 16: // MAJ
+                var temp = _run ? "walk" : "run";
+                button(_run, false, !_run);
+                _persoMouving.text(temp);
                 break;
 
-            case 17:
-                if (!_crounching){_run = false; _walk = false; _crounching = true;
-                    _persoMouving.text("crounching");
-                    $('.mouvingButton[name="crounching"]').attr('activ', "true");
-                    $('.mouvingButton[name="walk"]').attr('activ', "false");
-                    $('.mouvingButton[name="run"]').attr('activ', "false");}
-                else {_run = false; _walk = true; _crounching = false;
-                    _persoMouving.text("walk");
-                    $('.mouvingButton[name="crounching"]').attr('activ', "false");
-                    $('.mouvingButton[name="walk"]').attr('activ', "true");
-                    $('.mouvingButton[name="run"]').attr('activ', "false");}
+            case 17: // CTRL
+                var temp = _crounching ? "walk" : "crounching";
+                button(_crounching, !_crounching, false);
+                _persoMouving.text(temp);
                 break;
         }
         refresh();
@@ -156,6 +141,14 @@ $(function () {
                 else { _jauge -= _walkCost; _movePoint.text(_walkCost);}
             }
         }
+    }
+
+    function button(walk, crounching, run) {
+        _run = run; _walk = walk; _crounching = crounching;
+
+        $('.mouvingButton[name="crounching"]').attr('activ', crounching);
+        $('.mouvingButton[name="walk"]').attr('activ', walk);
+        $('.mouvingButton[name="run"]').attr('activ', run);
     }
 
     function include(file){
