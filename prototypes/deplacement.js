@@ -9,22 +9,22 @@ $(function () {
     var _movePoint = $("#movePoint");
     var _persoMouving = $('#persoMouving');
 
-    var _gauche = ['gauche', 'coinHG', 'coinBG'];
-    var _droit = ['droit', 'coinHD', 'coinBD'];
-    var _haut = ['haut', 'coinHD', 'coinHG'];
-    var _bas = ['bas', 'coinBD', 'coinBG'];
     var _run = false, _walk = true, _crounching = false;
 
     var _walkCost = 1, _runCost = 2;
     var _row, _col;
+    var temp;
     var _nbcol = 5;
 
     var _contenuDiv = _perso.children('div').html();
     var _class = _perso.children('div').attr('class');
+    var _goRight = _perso.children('div').data('goright');
+    var _goLeft = _perso.children('div').data('goleft');
+    var _goTop = _perso.children('div').data('gotop');
+    var _goBottom = _perso.children('div').data('gobottom');
 
     var _mouvingButtonClass = $(".mouvingButton");
     var _mouvingButtonActiv;
-
 
 
     //Consideration of mouving's button with a mouse
@@ -57,29 +57,29 @@ $(function () {
 
         switch(e.which){
             case 90: // Z
-                move(_haut, 1, 0, _run);
+                move(_goTop, 1, 0, _run);
                 break;
 
             case 81: // Q
-                move(_gauche, 0, 1, _run);
+                move(_goLeft, 0, 1, _run);
                 break;
 
             case 83: // S
-                move(_bas, -1, 0, _run);
+                move(_goBottom, -1, 0, _run);
                 break;
 
             case 68: // D
-                move(_droit, 0, -1, _run);
+                move(_goRight, 0, -1, _run);
                 break;
 
             case 16: // MAJ
-                var temp = _run ? "walk" : "run";
+                temp = _run ? "walk" : "run";
                 button(_run, false, !_run);
                 _persoMouving.text(temp);
                 break;
 
             case 17: // CTRL
-                var temp = _crounching ? "walk" : "crounching";
+                temp = _crounching ? "walk" : "crounching";
                 button(_crounching, !_crounching, false);
                 _persoMouving.text(temp);
                 break;
@@ -94,22 +94,22 @@ $(function () {
         switch(parseInt($(this).attr('row')) - _row){
             case -1: // Z
                 if (parseInt($(this).attr('col')) == _col) {
-                    move(_haut, 1, 0, _run);
+                    move(_goTop, 1, 0, _run);
                 }
                 break;
 
             case 0: // Q
                 if (parseInt($(this).attr('col')) == _col-1) {
-                    move(_gauche, 0, 1, _run);
+                    move(_goLeft, 0, 1, _run);
                 }
                 else if(parseInt($(this).attr('col')) == _col+1 ){ //D
-                    move(_droit, 0, -1, _run);
+                    move(_goRight, 0, -1, _run);
                 }
                 break;
 
             case 1: // S
                 if (parseInt($(this).attr('col')) == _col) {
-                    move(_bas, -1, 0, _run);
+                    move(_goBottom, -1, 0, _run);
                 }
                 break;
         }
@@ -128,20 +128,25 @@ $(function () {
         _perso = $('td:eq('+(_row*_nbcol+_col)+')');
         _perso.addClass('perso');
         _perso.children('div').html(_contenuDiv);
+        _goRight = _perso.children('div').data('goright');
+        _goLeft = _perso.children('div').data('goleft');
+        _goTop = _perso.children('div').data('gotop');
+        _goBottom = _perso.children('div').data('gobottom');
         $("#gauge").attr("heightGauge", _jauge).css("height", _jauge+"px");
 
         if (_jauge <= 0) {$("#sentence").text("Plus d'énergie !");}
     }
 
     function move(floor, row, col, run) {
-        if(_class != floor[0] && _class != floor[1] && _class != floor[2]) {
-            if(_jauge > 0) {
-                _row -= row; _col-= col;
-                if(run){ _jauge -= _runCost; _movePoint.text(_runCost);}
-                else { _jauge -= _walkCost; _movePoint.text(_walkCost);}
+        if(floor == 1) {
+                if(_jauge > 0) {
+                    _row -= row; _col-= col;
+                    if(run){ _jauge -= _runCost; _movePoint.text(_runCost);}
+                    else { _jauge -= _walkCost; _movePoint.text(_walkCost);}
+                }
             }
         }
-    }
+
 
     function button(walk, crounching, run) {
         _run = run; _walk = walk; _crounching = crounching;

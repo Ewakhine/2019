@@ -36,7 +36,7 @@ include('prototypes.php');
 <div id="minimap">
     <table>
         <?php
-        prototypeCollision($bdd);
+        prototypeDoor($bdd);
         ?>
     </table>
 </div>
